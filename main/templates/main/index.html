@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Chewy|Rubik+Mono+One" rel="stylesheet">
+    <link href="{% static 'main/files/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'main/files/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'main/files/grayscale.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/files/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pirata+One" rel="stylesheet">
+    <link rel='shortcut icon' type='image/x-icon' href="{% static 'main/images/fav.png' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+
+
+    <title>goKart | NITW</title>
+    
+    <style>
+        body { margin: 0; padding: 0;background: black; overflow-y: scroll; overflow-x: hidden;}
+
+        #butt1:hover{
+            color: #edc02a;
+        }
+        .placard{
+            display: inline-block;
+            height: 180px;
+            width: 160px;
+            
+            margin: 25px;
+            overflow-wrap: break-word;
+            padding: 10px;
+            margin-top: 0px;    
+        }
+        .img-circle{
+            max-height: 120px;
+        }
+        #teamName{
+            padding-top: 15px;
+            font-size: 16px;
+            font-family: 'Josefin Sans', sans-serif;
+            color: black;
+            line-height: 15px;
+            font-weight: bold;
+        }
+        #mainBox{
+            background: #3c3e42; 
+            height: 520px; 
+            width: 100%; 
+            border-radius: 10px; 
+            border-style: solid; 
+            border-width: 1px; 
+            padding-bottom: 20px; 
+            padding-top: 20px;
+            overflow-y: scroll;
+        }
+        h3{
+            padding-top: 10px;
+            color: #edc02a;
+            font-family: 'Bree Serif', serif;
+            text-shadow:  2px 2px 10px black;
+        }
+        h2{
+            color: #edc02a;
+        }
+        a{
+            color: #edc02a;
+        }
+        .vision { 
+          background: url(static/main/images/vision.jpg) no-repeat center center; 
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+        #visionText{
+            font-size: 40px;
+            font-family: 'Lora', serif;     
+        }
+        #visionDetailRows{
+            margin-top: 15px;
+            line-height: 30px;
+            font-size: 25px;
+            font-family: 'Bree Serif', serif;
+            text-shadow:  2px 2px 10px black;
+        }
+        #button1{
+            position: absolute;
+            top: 75%;
+            left: 45%;
+            font-family: 'Bree Serif', serif;
+            border-style: solid;
+            border-radius: 2px;
+            border-width: 1px;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        #contactBox{
+            -webkit-box-shadow: 0px 0px 9px 0px rgba(255,255,255,1);
+            -moz-box-shadow: 0px 0px 9px 0px rgba(255,255,255,1);
+            box-shadow: 0px 0px 9px 0px rgba(255,255,255,1);
+            border-style: solid; 
+            border-width: 1px; 
+            padding: 10px;
+            border-color: #edc02a;
+            position: relative;
+            top: 60px;
+            margin-bottom: 20px;
+        }
+        #impText{
+            color: #edc02a; 
+            display: inline;
+        }
+        .Competititons{
+            background: url(static/main/images/competition.jpg) no-repeat center center; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        #gkdc{
+            margin-top: 80px;
+            text-shadow:  2px 2px 10px black;
+        }
+        #skdc{
+            margin-top: 170px;
+        }
+        #designation{
+            color: black;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+            visibility: hidden;
+            position:absolute; 
+            top: 40px;
+            text-transform: uppercase;
+            left: 0px;
+            font-size: 25px;
+            width: 100%;
+            z-index: -1;
+        }
+        #designationDetails{
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 14px;
+            margin-top: -30px;
+        }
+        #contactDetail{
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 22px;
+        }
+        .col-lg-2{
+            margin-top: 20px;
+        }
+        .img-circle{
+            -webkit-box-shadow: 0px 15px 25px 4px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow: 0px 15px 25px 4px rgba(50, 50, 50, 0.75);
+            box-shadow: 0px 15px 25px 4px rgba(50, 50, 50, 0.75);
+        }
+        #ourteam{
+            font-family: 'Pirata One', cursive;
+            color: black;
+            font-size: 40px;
+            text-align: center;
+            position: relative;
+            left: -1px;
+            top: 60px;
+        }
+        .para{
+            padding-top: 30px;
+            font-size: 20px; 
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        .team{
+             padding-bottom: 3.9%;
+            width: 100%; 
+            background: url(static/main/images/team.png) no-repeat center center; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        #arrowDown{
+            overflow: hidden; 
+            height: 100%; 
+            width: 100%; 
+            opacity: 0.3;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        
+        #footerText{
+            overflow: hidden; 
+            height: 100%; 
+            width: 100%; 
+            
+            position: absolute;
+            top: 0px;
+
+            left: 0px;
+        }
+        .contactSection{
+            -webkit-box-shadow: 0px 15px 50px 0px rgba(0,0,0,1);
+            -moz-box-shadow: 0px 15px 50px 0px rgba(0,0,0,1);
+            box-shadow: 0px 15px 50px 0px rgba(0,0,0,1);
+        }
+        #footerMain{
+            color: #edc02a; 
+            display: inline;
+        }
+    </style>
+    <style>
+        #loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Add animation to "page content" */
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+      from { bottom:0px; opacity:1 } 
+      to { bottom:100px; opacity:0 }
+    }
+
+    @keyframes animatebottom { 
+      from{ bottom:0px; opacity:1 } 
+      to{ bottom:100px  ; opacity:0 }
+    }
+
+    </style>
+    <script>
+
+
+        $(document).ready(function() {
+
+
+            $("img[class='img-circle']").hover(function(){
+                    
+                    $(this).parent().find("#designation").css({'visibility':'visible'});
+                    $(this).parent().find("#teamName").css({'font-size':'20px'});
+                    $(this).css('opacity','0.3');
+                    $(this).parent().css({'background':'#ffe438','z-index':'100'})
+                    $(this).parent().find("#break").css('visibility','visible');
+                },function(){
+                    $(this).css('opacity','1');
+                    $(this).parent().find("#designation").css('visibility','hidden');
+                    $(this).parent().css({'background':'inherit','opacity':'1'})
+                    $(this).parent().find("#break").css('visibility','hidden');
+                    $(this).parent().find("#teamName").css({'font-size':'16px'});
+            })
+
+        });   
+
+        var scroll = 0;
+        var scrollSpeed = 1000;
+
+        var scrollPos = [0,684,1362,2040,2718,3396,4043]
+
+        $(document).keydown(function(e){
+
+            if($.inArray($(document).scrollTop(),scrollPos)!=-1){
+
+                if (e.keyCode == 40) {
+                    if($(document).scrollTop()==0){
+                        $('html, body').animate({
+                            scrollTop: 684
+                        }, scrollSpeed);
+                    }
+                    else{
+                        $('html, body').animate({
+                            scrollTop: $(document).scrollTop() + 678
+                        }, scrollSpeed);
+                    }
+                }
+                else if(e.keyCode == 38)
+                {
+                    if($(document).scrollTop()==684){
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, scrollSpeed);
+                    }
+                    else if($(document).scrollTop()==4043){
+                        $('html, body').animate({
+                            scrollTop: 3396
+                        }, scrollSpeed);    
+                    }
+                    else{
+                        $('html, body').animate({
+                            scrollTop: $(document).scrollTop() - 678
+                        }, scrollSpeed);
+                    }
+                }
+            }
+            
+        }); 
+    </script>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="myFunc()">
+    <script>
+        function myFunc() {
+            setTimeout(showPage,3000);
+        }
+
+        function showPage(){
+            $('#spanner').fadeOut(2000);
+            $('.wrap').css('visibility','hidden');
+        }
+    </script>
+    <div id="spanner" style="background: black; height: 100%; width: 100%; position: fixed; top: 0px; left: 0px; z-index: 9999; overflow:hidden;">
+            <div class="wrap">
+              <div class="bg">
+                <div class="loading">
+                  <span class="title">loading</span>
+                  <span class="text">mechXhausters</span>
+                </div>
+              </div>
+            </div>
+    </div>
+    <script src="{%static 'main/files/backjs.js' %}"></script>
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        Menu <i class="fa fa-bars"></i>
+                    </button>
+                    <a id="butt1" class="navbar-brand page-scroll" href="#page-top">
+                        <i class="fa fa-flag-checkered"></i> <span class="light">go</span>Kart 
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a id="butt1" class="page-scroll" href="#1" style="text-shadow: 2px 2px 10px black;">About</a>
+                        </li>
+                        <li>
+                            <a id="butt1" class="page-scroll" href="#2" style="text-shadow: 2px 2px 10px black;">Vision</a>
+                        </li>
+                        
+                        <li>
+                            <a id="butt1" class="page-scroll" href="#3" style="text-shadow: 2px 2px 10px black;">Competititons</a>
+                        </li> 
+                        <li>
+                            <a id="butt1" class="page-scroll" href="#4" style="text-shadow: 2px 2px 10px black;">Team</a>
+                        </li> 
+                        <li>
+                            <a id="butt1" class="page-scroll" href="#5" style="text-shadow: 2px 2px 10px black;">Results</a>
+                        </li> 
+                        <li>
+                            <a id="butt1" class="page-scroll" href="#6" style="text-shadow: 2px 2px 10px black;">Contact Us</a>
+                        </li> 
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <div id="1" style=" width: 100%; padding-bottom: 5.2%;">
+            <img src="{%static 'main/images/team.jpg'%}" style="max-width: 100%; position: relative; top: 20px;">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center para">    
+                    <h2 style="font-size: 28px;">About Us</h2>
+                    <div style="position: relative; top: -20px; font-size: 16px;">National Institute of Technology Warangal, one of India’s premier education institute was established in 1959 under the name of Regional Engineering College. In 2002, it was declared as an <div id="impText">institute of national
+                    importance</div>. Outlook Survey 2015 ranks it <div id="impText">11th</div> among the technical institutes of the country. The vision
+                    of the college is to give competent engineers, technocrats and researchers to various sectors of industry.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="2" class="vision" style="width: 100%; padding-bottom: 18.4%;">
+            <div class="row">
+                <div style="margin-top: 10%; margin-left: 40px; text-shadow: 2px 2px 10px black; font-family: 'Bree Serif', serif; font-size: 18px;" class="col-lg-10 col-lg-offset-1 para">    
+                    <h2 id="visionText">Vision</h2>
+                    What started as a passion is now a dream, a dream to design and <br> build  a state of the art go-kart that
+                    is stronger, sturdier and<br> lighter than ever before. Using top of the line materials we<br> aim to exhibit higher
+                    endurance, stability, resilience and <br>reach speeds never touched before. Our wish is to<br> extract the
+                    maximum we can get out of this<br> experience be it knowledge or the bonding we have<br> within our
+                    <div id="impText">MechXhausters</div> family.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        
+
+        <div id="3" class="Competititons" style=" width: 100%; padding-bottom: 3.8%;">
+        <div class="row" >
+            <center>
+            <div id="gkdc" class="col-lg-5 col-lg-offset-6">
+                <h2 style="text-shadow: 2px 2px 10px black; font-size: 20px;">Go Kart Design Challenge</h2>
+                <div style="font-family: 'Josefin Sans', sans-serif; font-size: 18px;">
+                GKDC is a contest formulated to enhance the approach of students practicing Engineering courses. This
+                event is fundamentally all about designing and fabricating a Go Kart at very low expenditure. The teams 
+                participating in this contest have to go through two rounds: Pre-Final Round and Final Round.
+                </div>
+            </div></center>
+        </div>
+        <div class="row" id="skdc">
+            <div class="col-lg-10 col-lg-offset-1" style="padding-bottom: 5%;" >
+            <h2 style="text-shadow: 2px 2px 10px black; font-size: 20px;">Students Kart Design Challenge</h2>
+            <div style="font-family: 'Josefin Sans', sans-serif; font-size: 18px;">
+                SKDC is a competition initiated to enhance better engineering approaches in undergraduate students
+                and exhibit their creativity and engineering skills. The vehicle and associated documentation are
+                researched, designed and fabricated by the team themselves. The competition encourages participants
+                to showcase their innovation proving along with it the practical and economical viability of their project.
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="4" class="team">
+                        <div class="row" id="ourteam">
+                            OUR TEAM
+                        </div>
+                                    <!-- DESIGN TEAM -->
+                        <div class="row" style="margin-top: 60px;"> 
+                                <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/sangram.jpg' %}" class="img-circle">
+                                <div id="teamName">Sangram Pradhan</div>
+                                <div id="designation">Design</div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/sriman1.jpg' %}" class="img-circle">
+                                <div id="teamName">B. Sriman</div>
+                                <div id="designation">Design</div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/raghvendra.jpg' %}" class="img-circle">
+                                <div id="teamName">Raghvendra Chandel</div>
+                                <div id="designation">Design</div>
+                            </div>
+
+                                        <!-- TRANSMISSION -->
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/Pranav.jpg' %}" class="img-circle">
+                                <div id="teamName">Pranav Agarwal</div>
+                                <div id="designation">Transmission</div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/faizal.jpg' %}" class="img-circle">
+                                <div id="teamName">Syed Faizal Husain</div>
+                                <div id="designation">Transmission</div>
+
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/shantanu.jpg' %}" class="img-circle">
+                                <div id="teamName">Shantanu Landore  </div>
+                                <div id="designation">Transmission</div>
+
+                            </div>
+                        </div>
+
+                                    <!-- BRAKING -->
+
+
+                        <div class="row">
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/sarabjit.png' %}" class="img-circle">
+                                <div id="teamName">Sarabjit Singh</div>
+                                <div id="designation">Braking</div>  
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/deepak.jpg' %}" class="img-circle">
+                                <div id="teamName">Deepak Sharma</div>
+                                <div id="designation">Braking</div>  
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/vikash.jpg' %}" class="img-circle">
+                                <div id="teamName">Vikash Meena</div>
+                                <div id="designation">Braking</div>  
+                            </div>
+
+
+                                    <!-- STEERING -->
+
+
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/arun.jpeg' %}" class="img-circle">
+                                <div id="teamName">Arun Chander</div>
+                                <div id="designation">Steering</div>  
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/anish.jpg' %}" class="img-circle">
+                                <div id="teamName">Anish Aman</div>
+                                <div id="designation">Steering</div> 
+                            </div>
+
+                                    <!-- ELECTRICAL AND ELECTRONICS -->
+
+
+                            <div class="col-lg-2 text-center">
+                                <img src="{% static 'main/images/team/shreya.jpg' %}" class="img-circle">
+                                <div id="teamName">Gomini Shreya</div>
+                                <div id="designation">Electronics</div>    
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                        <div class="col-lg-2 col-lg-offset-2 text-center">
+                            <img src="{% static 'main/images/team/anirban.png' %}" class="img-circle">
+                            <div id="teamName">Anirban Panda</div>
+                                <div id="designation">Electronics</div>   
+                        </div>
+
+                                <!-- DOCUMENTATION AND SPONSORSHIP -->
+
+
+                        <div class="col-lg-2 text-center">
+                            <img src="{% static 'main/images/team/nipun1.jpg' %}" class="img-circle">
+                            <div id="teamName">Nipun Agarwal</div>
+                                <div id="designation">Documentation</div>                      
+                        </div>
+                        <div class="col-lg-2 text-center">
+                            <img src="{% static 'main/images/team/afreen.jpg' %}" class="img-circle">
+                            <div id="teamName">Afreen Vazeer</div>
+                            <div id="designation">Documentation</div>                      
+
+                        </div>
+                        <div class="col-lg-2 text-center">
+                            <img src="{% static 'main/images/team/rahul.jpg' %}" class="img-circle">
+                            <div id="teamName">Rahul Patil</div>
+                            <div id="designation">Documentation</div>                      
+                        </div>
+                        </div>
+        </div>  
+
+        
+        <div id="5" style="height: 100%; width: 100%; background: white;">
+            s
+        </div>
+
+        <div id="6" class="contactSection" style=" height: 89.4%;  width: 100%; padding-bottom: 10px;">
+            <div class="row" style="padding-left: 100px; padding-right: 100px;" >
+                <div class="col-lg-4">  
+                    <h2 class="text-center" style="position: relative; top: 140px; font-family: 'Sansita', sans-serif; text-shadow: 2px 2px 80px white; font-size: 28px;">Contact Us</h2>
+                    <div id="contactDetail" style="padding-left: 60px; position: relative; top: 5%; margin-top: 200px;">
+                        <div style="font-size: 18px; font-family: 'Bree Serif', serif; text-align: center; "><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp;Contact us..anywhere anytime!</div><br>
+                        <i class="fa fa-map-marker" style="color: #edc02a; font-size: 18px; padding: 2px;" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp; NIT Warangal, Telangana<br><br>
+                        <i class="fa fa-envelope" style="color: #edc02a; font-size: 18px;" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;gk2017nitw@gmail.com<br><br>
+                        <i class="fa fa-facebook-official" style="color: #edc02a; font-size: 24px;" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                        /mechXhausters
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-lg-offset-3" id="contactBox">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <center>
+                            <img src="{% static 'main/images/team/sangram.jpg'%}" style="max-height: 120px;">
+                                
+                            </center>
+                        </div>
+                        <div class="col-lg-7">
+                            <center><h3 style="font-size: 18px;">Captain</h3>
+                            <div id="designationDetails">
+                                Sangram Pradhan<br><i style="color: #edc02a; display: inline; font-size: 14px;" class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp;8801110184<br>
+                                <i class="fa fa-envelope" style="color: #edc02a; display: inline; font-size: 14px;" aria-hidden="true"></i>&nbsp;&nbsp;psangram@student.nitw.ac.in<br>
+                                <i class="fa fa-facebook-official" style="color: #edc02a; font-size: 14px;" aria-hidden="true"></i>&nbsp;&nbsp;/sangram.pradhan.1614
+                            </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-lg-offset-3" id="contactBox">
+                    <div class="row">
+                        <div class="col-lg-5">
+                        <center>
+                            <img src="{% static 'main/images/team/boora.jpg'%}" style="max-height: 120px;">
+                            
+                        </center>
+                        </div>
+                        <div class="col-lg-7">
+                            <center><h3 style="font-size: 18px;">Vice-Captain</h3>
+                            <div id="designationDetails">
+                                Sriman Boora<br><i style="color: #edc02a; display: inline; font-size: 14px;" class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp;7675989018<br>
+                                <i class="fa fa-envelope" style="color: #edc02a; display: inline; font-size: 14px;" aria-hidden="true"></i>&nbsp;&nbsp;sb@student.nitw.ac.in<br>
+                                <i class="fa fa-facebook-official" style="color: #edc02a; font-size: 14px;" aria-hidden="true"></i>&nbsp;&nbsp;/sriman.boora
+                            </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-lg-offset-3" id="contactBox">
+                    <div class="row">
+                        <div class="col-lg-5">
+                        <center>
+                            <img src="{% static 'main/images/team/nipun1.jpg'%}" style="max-height: 120px;">
+                            
+                        </center>
+                        </div>
+                        <div class="col-lg-7">
+                            <center><h3 style="font-size: 18px;">Manager</h3>
+                            <div id="designationDetails">
+                                Nipun Agarwal<br><i style="color: #edc02a; display: inline; font-size: 14px;" class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp;7675989018<br>
+                                <i class="fa fa-envelope" style="color: #edc02a; display: inline; font-size: 14px;" aria-hidden="true"></i>&nbsp;&nbsp;anipun@student.nitw.ac.in<br>
+                                <i class="fa fa-facebook-official" style="color: #edc02a; font-size: 14px;" aria-hidden="true"></i>&nbsp;&nbsp;/nipun.agrawal.505
+                            </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4" style="position: absolute; top: 50%;">
+                     <img src="{% static 'main/images/logo1.png' %}" class="img-responsive" style="max-height: 200px;">
+                </div>
+            </div>
+
+
+
+        <a id="button1" href="#1" class="btn btn-circle page-scroll">
+            <i class="fa fa-angle-double-down animated"></i>
+        </a>
+
+        <script src="{% static 'main/files/jquery.js' %}"></script>
+
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+
+        <script src="{% static 'main/files/grayscale.min.js' %}"></script>
+
+        <script src="{% static 'main/files/bootstrap.min.js' %}"></script>
+
+        <div style=" height: 40px; position: relative; top: 20.5%; background: #ffffff; color:; z-index: -2;">s</div>
+</body>
+</html> 
