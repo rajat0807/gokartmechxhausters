@@ -17,8 +17,6 @@ pycparser==2.17
 pycurl==7.43.0
 PyDispatcher==2.0.5
 pyOpenSSL==16.2.0
-python-apt==1.1.0b1
-python-Levenshtein==0.12.0
 python-memcached==1.57
 pytz==2016.1
 PyVirtualDisplay==0.2.1
